@@ -12,7 +12,7 @@
 
 library(sqldf) ## Load the required Library for sqldf
 
-fname <- file("./proj1/household_power_consumption.txt", open = "r", blocking = FALSE)
+fname <- file("household_power_consumption.txt", open = "r", blocking = FALSE)
 
 ## Get the required 2 years of data only -Using SQL will make it possible and
 ## would allow you to not overwhelm your system limited resource, memory.
@@ -49,7 +49,7 @@ write.csv(myData, file = "household_power_consumption.csv" )
 ## Here is plot number 1
 
 ##Open a png graphic device to store the plot as a 480 X 480 pix image.
-png(filename = "./proj1/plot1.png",
+png(filename = "plot1.png",
     width = 480, height = 480, units = "px", pointsize = 12,
     bg = "white",  res = NA, 
     type = "cairo")

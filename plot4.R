@@ -13,7 +13,7 @@
 
 library(sqldf) ## Load the required Library for sqldf
 
-fname <- file("./proj1/household_power_consumption.txt", open = "r", blocking = FALSE)
+fname <- file("household_power_consumption.txt", open = "r", blocking = FALSE)
 
 ## Get the required 2 years of data only -Using SQL will make it possible and
 ## would allow you to not overwhelm your system limited resource, memory.
@@ -47,7 +47,7 @@ myData <- cbind(myData, datetime)
 
 # This is the combined plots
 
-png(filename = "./proj1/plot4.png",
+png(filename = "plot4.png",
     width = 480, height = 480, units = "px", pointsize = 12,
     bg = "white",  res = NA, 
     type = "cairo")
