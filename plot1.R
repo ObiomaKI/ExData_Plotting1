@@ -12,14 +12,12 @@
 
 library(sqldf) ## Load the required Library for sqldf
 
-fname <- file("./household_power_consumption.txt", open = "r", blocking = FALSE)
+fname <- file("./proj1/household_power_consumption.txt", open = "r", blocking = FALSE)
 
-## Get the required 2 years of data plus the beginning reading of the day after
-## 02/02/2007 at time 00:00:00. This is required so that the last X-axis 
-## annotation will read 'Sat'
+## Get the required 2 years of data only -Using SQL will make it possible and
+## would allow you to not overwhelm your system limited resource, memory.
 
-sqlQuery <-  "select * from fname where Date in (\"1/2/2007\" , \"2/2/2007\") OR 
-(Date = \"3/2/2007\" and Time = \"00:00:00\")" 
+sqlQuery <-  "select * from fname where Date in (\"1/2/2007\" , \"2/2/2007\")" 
 
 myData <- sqldf(sqlQuery,
                 file.format = list(sep = ";", header = TRUE,                    
@@ -45,24 +43,20 @@ datetime <-   paste(myData$date, myData$time)
 
 myData <- cbind(myData, datetime)
 
-## Select the position of all midnights time in our data
-
-pos <- myData$time == "00:00:00"
-
 # Write the extracted files to disk for inspection
 write.csv(myData, file = "household_power_consumption.csv" )
 
 ## Here is plot number 1
 
 ##Open a png graphic device to store the plot as a 480 X 480 pix image.
-png(filename = "plot1.png",
+png(filename = "./proj1/plot1.png",
     width = 480, height = 480, units = "px", pointsize = 12,
     bg = "white",  res = NA, 
     type = "cairo")
 
 # Plot the first graph (Histogram)
 hist(myData$global_active_power, main = "Global Active Power",
-     , xlab = "Global Active Power (kilowtts)", col = "red")
+     , xlab = "Global Active Power (kilowatts)", col = "red")
 
 # Close the graphic device
 dev.off()
